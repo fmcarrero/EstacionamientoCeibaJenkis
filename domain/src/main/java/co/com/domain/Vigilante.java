@@ -27,8 +27,8 @@ public class Vigilante {
 	private IVehiculoRepository vehiculoRepository;
 	private IEstacionamientoRepository estacionamientoRepository;
 	private IFacturaRepository facturaRepository;
-	private final int disponibilidadMotos = 10; 
-	private final int disponibilidadCarro = 20; 
+	private static final int disponibilidadMotos = 10; 
+	private static final int disponibilidadCarro = 20; 
 	
 	public Vigilante(IVehiculoRepository vehiculoRepository, IEstacionamientoRepository estacionamientoRepository,IFacturaRepository facturaRepository){
 		this.vehiculoRepository =vehiculoRepository;
@@ -71,10 +71,8 @@ public class Vigilante {
 		if(vehiculo.getIdTipoVehiculo() == TipoVehiculoEnum.CARRO.getValue()){
 			if (cupoparqueadero>this.disponibilidadCarro)
 				throw new VehiculoException("parqueadero se encuentra lleno");
-		}else if(vehiculo.getIdTipoVehiculo() == TipoVehiculoEnum.MOTO.getValue()) {
-			
-			if (cupoparqueadero>this.disponibilidadMotos)
-				throw new VehiculoException("parqueadero se encuentra lleno");
+		}else if(vehiculo.getIdTipoVehiculo() == TipoVehiculoEnum.MOTO.getValue() && cupoparqueadero>this.disponibilidadMotos) {
+		     		throw new VehiculoException("parqueadero se encuentra lleno");
 		}		
 	}
 	public void validarPlaca(Vehiculo vehiculo,DayOfWeek dayOfWeek) throws VehiculoException {

@@ -1,4 +1,4 @@
-package co.com.persistenciaImplementacion;
+package co.com.persistenciaimplementacion;
 import org.excepciones.VehiculoException;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

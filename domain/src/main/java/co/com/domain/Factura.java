@@ -2,13 +2,7 @@ package co.com.domain;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-public class Factura {
-	
+public class Factura {	
 	
 	private long numeroFactura;
 	private String placa;	
@@ -47,5 +41,8 @@ public class Factura {
 	public double getValorPagar() {
 		return valorPagar;
 	}	
+	public long getnumeroFactura(){
+		return this.numeroFactura;
+	}
 	
 }

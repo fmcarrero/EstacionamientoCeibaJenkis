@@ -7,7 +7,7 @@ public class Moto  extends Vehiculo {
 	
 	private double tarifaDia=4000;
 	private double tarifaHora = 500;
-	private double TarifaAdicionalCilidndraje =2000;
+	private double tarifaAdicionalCilidndraje =2000;
 	
 	public Moto(String placa, String color, long cilindraje) {
 		super(placa, color, cilindraje);		
@@ -23,5 +23,5 @@ public class Moto  extends Vehiculo {
 	public double getTariaHora(){ return this.tarifaHora;}
 	
 	@Override
-	public double getTarifaAdicionalCilidndraje() {return this.TarifaAdicionalCilidndraje;}
+	public double getTarifaAdicionalCilidndraje() {return this.tarifaAdicionalCilidndraje;}
 }

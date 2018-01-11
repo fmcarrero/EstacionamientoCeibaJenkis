@@ -17,7 +17,7 @@ import co.com.persistencia.entity.VehiculoEntity;
 public class VehiculoFactory implements IVehiculoFactory{
 	
 	   public Vehiculo getVehiculo(VehiculoEntity vehiculo) throws VehiculoException{
-		  String classObject = vehiculo.getClass().getSimpleName().toString().toUpperCase().replaceAll("ENTITY", "");
+		  String classObject = vehiculo.getClass().getSimpleName().toUpperCase().replaceAll("ENTITY", "");
 		  EstacionamientoEntity entityEstacionamiento = vehiculo.getEstacionamiento();
 		  Estacionamiento estacionamiento =new Estacionamiento(entityEstacionamiento.getPlaca(),entityEstacionamiento.getFechaHoraInicio(),entityEstacionamiento.getObservacion() );
 	      if(classObject.equals(TipoVehiculoEnum.CARRO.toString())){
@@ -50,15 +50,14 @@ public class VehiculoFactory implements IVehiculoFactory{
 
 	@Override
 	public Vehiculo getVehiculoWithOUTEstacionamiento(VehiculoEntity vehiculo) throws VehiculoException {
-		String classObject = vehiculo.getClass().getSimpleName().toString().toUpperCase().replaceAll("ENTITY", "");
+		String classObject = vehiculo.getClass().getSimpleName().toUpperCase().replaceAll("ENTITY", "");
 		if(classObject.equals(TipoVehiculoEnum.CARRO.toString())){
-	    	  Carro carro = new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    	  
-	        	return carro;
+	    	 return new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    	  
+	        
 	         
 	      } else if(classObject.equals(TipoVehiculoEnum.MOTO.toString())){
-	    	  Moto moto = new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());
-	    	  return moto;
-	         
+	    	  return new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());
+	    		         
 	      }	      
 	      throw new VehiculoException("Vehiculo no permitido");
 	}
