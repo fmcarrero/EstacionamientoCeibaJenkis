@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.com.domain.Vehiculo;
-import co.com.persistencia.base.BaseRepository;
 import co.com.persistencia.crud.ICrudVehiculoRepository;
 import co.com.persistencia.entity.VehiculoEntity;
 import co.com.repository.IVehiculoRepository;
@@ -13,7 +12,7 @@ import factory.IVehiculoFactory;
 
 
 @Repository
-public class VehiculoRepository extends BaseRepository<VehiculoEntity,Vehiculo> implements IVehiculoRepository {
+public class VehiculoRepository implements IVehiculoRepository {
 
 	@Autowired
 	private ICrudVehiculoRepository crudVehiculoRepository;
@@ -21,9 +20,7 @@ public class VehiculoRepository extends BaseRepository<VehiculoEntity,Vehiculo> 
 	@Autowired
 	private IVehiculoFactory vehiculoFactory;
 	
-	public VehiculoRepository() {
-		super(Vehiculo.class, VehiculoEntity.class);
-	}
+	
 
 
 	@Override

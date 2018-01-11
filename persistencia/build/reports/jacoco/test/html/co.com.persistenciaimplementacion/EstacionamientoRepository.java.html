@@ -12,14 +12,13 @@ import org.springframework.stereotype.Repository;
 import com.google.common.collect.Lists;
 
 import co.com.domain.Estacionamiento;
-import co.com.persistencia.base.BaseRepository;
 import co.com.persistencia.crud.ICrudEstacionamientoRepository;
 import co.com.persistencia.entity.EstacionamientoEntity;
 import co.com.repository.IEstacionamientoRepository;
 import factory.IVehiculoFactory;
 
 @Repository
-public class EstacionamientoRepository extends BaseRepository&lt;EstacionamientoEntity,Estacionamiento&gt; implements IEstacionamientoRepository {
+<span class="nc" id="L21">public class EstacionamientoRepository  implements IEstacionamientoRepository {</span>
 
 	@Autowired
 	private ICrudEstacionamientoRepository crudEstacionamientoRepository;
@@ -27,44 +26,41 @@ public class EstacionamientoRepository extends BaseRepository&lt;Estacionamiento
 	@Autowired
 	private IVehiculoFactory vehiculoFactory;
 	
-	public EstacionamientoRepository() {
-<span class="nc" id="L31">		super(Estacionamiento.class, EstacionamientoEntity.class);</span>
-<span class="nc" id="L32">	}</span>
-	
+		
 	@Override
 	public void guardar(Estacionamiento vehiculo)  {		
-<span class="nc bnc" id="L36" title="All 2 branches missed.">		if(this.crudEstacionamientoRepository.exists(vehiculo.getPlaca())){</span>
-<span class="nc" id="L37">			throw new DataIntegrityViolationException(&quot;Vehiculo ya se encuentra en el estacionamiento&quot;);</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">		if(this.crudEstacionamientoRepository.exists(vehiculo.getPlaca())){</span>
+<span class="nc" id="L33">			throw new DataIntegrityViolationException(&quot;Vehiculo ya se encuentra en el estacionamiento&quot;);</span>
 		}
-<span class="nc" id="L39">		EstacionamientoEntity estacionamientoEntity = new EstacionamientoEntity(vehiculo.getPlaca(),vehiculo.getFechaHoraInicio(),vehiculo.getObservacion());</span>
-<span class="nc" id="L40">		this.crudEstacionamientoRepository.save(estacionamientoEntity);		</span>
-<span class="nc" id="L41">	}</span>
+<span class="nc" id="L35">		EstacionamientoEntity estacionamientoEntity = new EstacionamientoEntity(vehiculo.getPlaca(),vehiculo.getFechaHoraInicio(),vehiculo.getObservacion());</span>
+<span class="nc" id="L36">		this.crudEstacionamientoRepository.save(estacionamientoEntity);		</span>
+<span class="nc" id="L37">	}</span>
 	
 	@SuppressWarnings(&quot;unchecked&quot;)
 	public List&lt;Estacionamiento&gt; getAll() throws VehiculoException {		
-<span class="nc" id="L45">		List&lt;EstacionamientoEntity&gt; lista = Lists.newArrayList(this.crudEstacionamientoRepository.findAll());</span>
-<span class="nc" id="L46">		List&lt;Estacionamiento&gt; listaEstacionamiento = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">		for( EstacionamientoEntity e : lista){</span>
-<span class="nc" id="L48">			Estacionamiento estacionamiento = new Estacionamiento(e.getPlaca(),e.getFechaHoraInicio(),e.getObservacion());</span>
-<span class="nc" id="L49">			estacionamiento.setVehiculo(this.vehiculoFactory.getVehiculo(e.getVehiculo()));</span>
-<span class="nc" id="L50">			listaEstacionamiento.add(estacionamiento);</span>
-<span class="nc" id="L51">		}		</span>
-<span class="nc" id="L52">		return listaEstacionamiento;	</span>
+<span class="nc" id="L41">		List&lt;EstacionamientoEntity&gt; lista = Lists.newArrayList(this.crudEstacionamientoRepository.findAll());</span>
+<span class="nc" id="L42">		List&lt;Estacionamiento&gt; listaEstacionamiento = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">		for( EstacionamientoEntity e : lista){</span>
+<span class="nc" id="L44">			Estacionamiento estacionamiento = new Estacionamiento(e.getPlaca(),e.getFechaHoraInicio(),e.getObservacion());</span>
+<span class="nc" id="L45">			estacionamiento.setVehiculo(this.vehiculoFactory.getVehiculo(e.getVehiculo()));</span>
+<span class="nc" id="L46">			listaEstacionamiento.add(estacionamiento);</span>
+<span class="nc" id="L47">		}		</span>
+<span class="nc" id="L48">		return listaEstacionamiento;	</span>
 	}
 
 	@Override
 	public void delete(Estacionamiento estacionamiento) {
-<span class="nc" id="L57">		EstacionamientoEntity estacionamientoEntity = new EstacionamientoEntity(estacionamiento.getPlaca(),estacionamiento.getFechaHoraInicio(),estacionamiento.getObservacion());</span>
-<span class="nc" id="L58">		this.crudEstacionamientoRepository.delete(estacionamientoEntity);		</span>
-<span class="nc" id="L59">	}</span>
+<span class="nc" id="L53">		EstacionamientoEntity estacionamientoEntity = new EstacionamientoEntity(estacionamiento.getPlaca(),estacionamiento.getFechaHoraInicio(),estacionamiento.getObservacion());</span>
+<span class="nc" id="L54">		this.crudEstacionamientoRepository.delete(estacionamientoEntity);		</span>
+<span class="nc" id="L55">	}</span>
 
 	@Override
 	public Estacionamiento get(String placa) {
-<span class="nc" id="L63">		EstacionamientoEntity entity = this.crudEstacionamientoRepository.findOne(placa);</span>
-<span class="nc bnc" id="L64" title="All 2 branches missed.">		if(entity == null ){</span>
-<span class="nc" id="L65">			throw new ObjectNotFoundException(&quot;Estacionamiento no encontrado&quot;,placa);</span>
+<span class="nc" id="L59">		EstacionamientoEntity entity = this.crudEstacionamientoRepository.findOne(placa);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		if(entity == null ){</span>
+<span class="nc" id="L61">			throw new ObjectNotFoundException(&quot;Estacionamiento no encontrado&quot;,placa);</span>
 		}
-<span class="nc" id="L67">		return  new Estacionamiento(entity.getPlaca(),entity.getFechaHoraInicio(),entity.getObservacion());</span>
+<span class="nc" id="L63">		return  new Estacionamiento(entity.getPlaca(),entity.getFechaHoraInicio(),entity.getObservacion());</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

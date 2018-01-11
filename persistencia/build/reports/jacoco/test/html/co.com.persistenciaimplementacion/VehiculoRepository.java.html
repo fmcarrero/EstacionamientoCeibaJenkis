@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.com.domain.Vehiculo;
-import co.com.persistencia.base.BaseRepository;
 import co.com.persistencia.crud.ICrudVehiculoRepository;
 import co.com.persistencia.entity.VehiculoEntity;
 import co.com.repository.IVehiculoRepository;
@@ -13,7 +12,7 @@ import factory.IVehiculoFactory;
 
 
 @Repository
-public class VehiculoRepository extends BaseRepository&lt;VehiculoEntity,Vehiculo&gt; implements IVehiculoRepository {
+<span class="nc" id="L15">public class VehiculoRepository implements IVehiculoRepository {</span>
 
 	@Autowired
 	private ICrudVehiculoRepository crudVehiculoRepository;
@@ -21,35 +20,33 @@ public class VehiculoRepository extends BaseRepository&lt;VehiculoEntity,Vehicul
 	@Autowired
 	private IVehiculoFactory vehiculoFactory;
 	
-	public VehiculoRepository() {
-<span class="nc" id="L25">		super(Vehiculo.class, VehiculoEntity.class);</span>
-<span class="nc" id="L26">	}</span>
+	
 
 
 	@Override
 	public Vehiculo findByPlacaWithEstacionamiento(String placa) throws VehiculoException {
-<span class="nc" id="L31">		VehiculoEntity vehiculo= this.crudVehiculoRepository.findByPlaca(placa);</span>
-<span class="nc bnc" id="L32" title="All 4 branches missed.">		if(vehiculo == null || vehiculo.getEstacionamiento() == null){</span>
-<span class="nc" id="L33">			throw new ObjectNotFoundException(&quot;vehiculo no encontrado&quot;,placa);</span>
+<span class="nc" id="L28">		VehiculoEntity vehiculo= this.crudVehiculoRepository.findByPlaca(placa);</span>
+<span class="nc bnc" id="L29" title="All 4 branches missed.">		if(vehiculo == null || vehiculo.getEstacionamiento() == null){</span>
+<span class="nc" id="L30">			throw new ObjectNotFoundException(&quot;vehiculo no encontrado&quot;,placa);</span>
 		}
-<span class="nc" id="L35">		return this.vehiculoFactory.getVehiculo(vehiculo);</span>
+<span class="nc" id="L32">		return this.vehiculoFactory.getVehiculo(vehiculo);</span>
 	}
 
 
 	@Override
 	public void guardar(Vehiculo vehiculo) throws VehiculoException {
-<span class="nc" id="L41">		VehiculoEntity vehiculoEntity = this.vehiculoFactory.getVehiculoEntity(vehiculo);</span>
-<span class="nc" id="L42">		this.crudVehiculoRepository.save(vehiculoEntity);		</span>
-<span class="nc" id="L43">	}</span>
+<span class="nc" id="L38">		VehiculoEntity vehiculoEntity = this.vehiculoFactory.getVehiculoEntity(vehiculo);</span>
+<span class="nc" id="L39">		this.crudVehiculoRepository.save(vehiculoEntity);		</span>
+<span class="nc" id="L40">	}</span>
 
 
 	@Override
 	public Vehiculo get(String placa) throws VehiculoException {
-<span class="nc" id="L48">		VehiculoEntity vehiculo= this.crudVehiculoRepository.findByPlaca(placa);</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">		if(vehiculo == null){</span>
-<span class="nc" id="L50">			throw new ObjectNotFoundException(&quot;vehiculo no encontrado&quot;,placa);</span>
+<span class="nc" id="L45">		VehiculoEntity vehiculo= this.crudVehiculoRepository.findByPlaca(placa);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">		if(vehiculo == null){</span>
+<span class="nc" id="L47">			throw new ObjectNotFoundException(&quot;vehiculo no encontrado&quot;,placa);</span>
 		}
-<span class="nc" id="L52">		return this.vehiculoFactory.getVehiculoWithOUTEstacionamiento(vehiculo);</span>
+<span class="nc" id="L49">		return this.vehiculoFactory.getVehiculoWithOUTEstacionamiento(vehiculo);</span>
 	}	
 
 }

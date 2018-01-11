@@ -12,14 +12,13 @@ import org.springframework.stereotype.Repository;
 import com.google.common.collect.Lists;
 
 import co.com.domain.Estacionamiento;
-import co.com.persistencia.base.BaseRepository;
 import co.com.persistencia.crud.ICrudEstacionamientoRepository;
 import co.com.persistencia.entity.EstacionamientoEntity;
 import co.com.repository.IEstacionamientoRepository;
 import factory.IVehiculoFactory;
 
 @Repository
-public class EstacionamientoRepository extends BaseRepository<EstacionamientoEntity,Estacionamiento> implements IEstacionamientoRepository {
+public class EstacionamientoRepository  implements IEstacionamientoRepository {
 
 	@Autowired
 	private ICrudEstacionamientoRepository crudEstacionamientoRepository;
@@ -27,10 +26,7 @@ public class EstacionamientoRepository extends BaseRepository<EstacionamientoEnt
 	@Autowired
 	private IVehiculoFactory vehiculoFactory;
 	
-	public EstacionamientoRepository() {
-		super(Estacionamiento.class, EstacionamientoEntity.class);
-	}
-	
+		
 	@Override
 	public void guardar(Estacionamiento vehiculo)  {		
 		if(this.crudEstacionamientoRepository.exists(vehiculo.getPlaca())){

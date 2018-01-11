@@ -4,19 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.com.domain.Factura;
-import co.com.persistencia.base.BaseRepository;
 import co.com.persistencia.crud.ICrudFacturaRepository;
 import co.com.persistencia.entity.FacturaEntity;
 import co.com.repository.IFacturaRepository;
 
 @Repository
-public class FacturaRepository extends BaseRepository<FacturaEntity,Factura> implements IFacturaRepository{
+public class FacturaRepository  implements IFacturaRepository{
 
 	@Autowired
 	private ICrudFacturaRepository crudFacturaRepository;
-	public  FacturaRepository(){
-		super(Factura.class, FacturaEntity.class);
-	}
+	
 
 	@Override
 	public void guardar(Factura factura) {

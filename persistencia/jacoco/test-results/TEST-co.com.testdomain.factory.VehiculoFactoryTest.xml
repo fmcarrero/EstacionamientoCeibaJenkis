@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="co.com.testdomain.factory.VehiculoFactoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-01-11T20:11:44" hostname="DESKTOP-BD43J8F" time="0.039">
+<testsuite name="co.com.testdomain.factory.VehiculoFactoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-01-11T20:46:07" hostname="DESKTOP-BD43J8F" time="0.041">
   <properties/>
-  <testcase name="getVehiculoEntityCarroOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.01"/>
-  <testcase name="getVehiculoEntityMotoOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.001"/>
+  <testcase name="getVehiculoEntityCarroOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.009"/>
+  <testcase name="getVehiculoEntityMotoOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.0"/>
   <testcase name="getVehiculoWithOUTEstacionamientoTestCarroOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.001"/>
-  <testcase name="getVehiculoTestMotoOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.026"/>
+  <testcase name="getVehiculoTestMotoOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.028"/>
   <testcase name="getVehiculoWithOUTEstacionamientoTestMotoOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.0"/>
   <testcase name="getVehiculoTestCarroOk" classname="co.com.testdomain.factory.VehiculoFactoryTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

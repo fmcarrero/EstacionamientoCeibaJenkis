@@ -16,11 +16,12 @@ dependencies {
     
     compile project (':domain') 
     compile project(":persistencia")
-  compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
-   compile project.ext.log4j
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+    compile project.ext.log4j
 	compile project.ext.quartz
     compile project.ext.springquartz 
 	compile project.ext.websocket
+	
     testCompile project.ext.junit
     testCompile project.ext.mockito
     testCompile project.ext.junitparams

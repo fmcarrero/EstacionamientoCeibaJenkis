@@ -10,31 +10,32 @@ public class ApiError {
 	   private String debugMessage;
 	   private HttpStatus status;
 	   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-	   private LocalDateTime timestamp;
+	   public LocalDateTime timestamp;
 	   
 	  
 	   public HttpStatus getStatus() {return this.status;}
 
-	   private ApiError() {
+	   public ApiError() {
 		   timestamp = LocalDateTime.now();
 		   
 	   }
 	  
 	   public String getMessage() { return this.message;}
 	   public String getDebugMessage() { return this.debugMessage;}
-	   ApiError(HttpStatus status) {
+	   
+	  public ApiError(HttpStatus status) {
 	       this();
 	       this.status = status;
 	    }
 
-	   ApiError(HttpStatus status, Throwable ex) {
+	   public ApiError(HttpStatus status, Throwable ex) {
 	       this();
 	       this.status = status;
 	       this.message = "Unexpected error";
 	       this.debugMessage = ex.getLocalizedMessage();
 	   }
 	  
-	   ApiError(HttpStatus status, String message, Throwable ex) {
+	   public ApiError(HttpStatus status, String message, Throwable ex) {
 	       this();
 	       this.status = status;
 	       this.message = message;

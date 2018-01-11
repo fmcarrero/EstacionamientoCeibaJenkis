@@ -178,4 +178,29 @@ public class VigilanteTest {
 		assertEquals(estacionamientos.size(), estacionamientos2.size());
 	}
 	
+	@Test
+	public void  finVehiculoByPlacaOkTest() throws VehiculoException{
+		//arrange
+		Vehiculo vehiculo = new VehiculoTestDataBuilder().buildCarro();
+		//act
+		Mockito.when(this.vehiculoRepository.get(vehiculo.getPlaca())).thenReturn(vehiculo);
+		//assert
+		assertNotNull(vehiculo);
+	}
+	
+	@Test 
+	public void getValorAPagarOk(){
+		//arrage
+		LocalDateTime hoy = LocalDateTime.of(2018, 1, 2,0,0);
+		LocalDateTime masTarde = hoy.withHour(10);
+		Vehiculo vehiculo = new VehiculoTestDataBuilder().buildCarro();
+		Estacionamiento estacionamiento = new EstacionamientoTestDataBuilder().withFechaHoraInicio(Timestamp.valueOf(hoy)).withVehiculo(vehiculo).build();
+		SalidaVehiculoDto salidaVehiculoDto = new SalidaVehiculoDtoTestDataBuilder().withFechaHoraFin(Timestamp.valueOf(masTarde)).build();
+		//act
+		double valorapagar = this.vigilante.getValorAPagar(vehiculo, estacionamiento, salidaVehiculoDto);
+		System.out.println(valorapagar);
+		//assert
+		assertEquals(valorapagar, vehiculo.getTariaDia(),0);
+	}
+	
 }
