@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Vigilante.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">domain</a> &gt; <a href="index.source.html" class="el_package">co.com.domain</a> &gt; <span class="el_source">Vigilante.java</span></div><h1>Vigilante.java</h1><pre class="source lang-java linenums">package co.com.domain;
+
+import java.sql.Timestamp;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import javax.transaction.Transactional;
+
+import org.dto.SalidaVehiculoDto;
+import org.enumvehiculos.TipoVehiculoEnum;
+import org.excepciones.VehiculoException;
+import org.hibernate.ObjectNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.hibernate5.HibernateSystemException;
+import org.util.fechas.Fechas;
+
+import co.com.repository.IEstacionamientoRepository;
+import co.com.repository.IFacturaRepository;
+import co.com.repository.IVehiculoRepository;
+
+
+
+
+public class Vigilante {
+	
+	private IVehiculoRepository vehiculoRepository;
+	private IEstacionamientoRepository estacionamientoRepository;
+	private IFacturaRepository facturaRepository;
+	private static final int DISPONIBILIDADMOTO = 10; 
+	private static final int DISPONIBILIDADCARRO = 20; 
+	
+<span class="fc" id="L33">	public Vigilante(IVehiculoRepository vehiculoRepository, IEstacionamientoRepository estacionamientoRepository,IFacturaRepository facturaRepository){</span>
+<span class="fc" id="L34">		this.vehiculoRepository =vehiculoRepository;</span>
+<span class="fc" id="L35">		this.estacionamientoRepository=estacionamientoRepository;</span>
+<span class="fc" id="L36">		this.facturaRepository=facturaRepository;</span>
+<span class="fc" id="L37">	}</span>
+	
+	public Vehiculo finVehiculoByPlaca (String placa) throws VehiculoException{		
+<span class="nc" id="L40">		return  this.vehiculoRepository.get(placa);</span>
+	}
+
+	@Transactional
+	public void registrarVehiculo(Vehiculo vehiculo)throws Exception  {
+		try {	
+<span class="fc" id="L46">			LocalDateTime localDate = LocalDateTime.now();	</span>
+<span class="fc" id="L47">	        Timestamp fechaHoraIngreso = Timestamp.valueOf(localDate);</span>
+<span class="fc" id="L48">			Estacionamiento estacionamiento = new Estacionamiento(vehiculo.getPlaca(),fechaHoraIngreso,vehiculo.getObservacion());</span>
+<span class="fc" id="L49">			vehiculo.setEstacionamiento(estacionamiento);		</span>
+<span class="fc" id="L50">			DayOfWeek dayOfWeek = Fechas.getDiaActual();</span>
+<span class="fc" id="L51">			validarPlaca(vehiculo,dayOfWeek);</span>
+<span class="fc" id="L52">			validarDisponibilidadEstacionamiento(vehiculo);	</span>
+<span class="fc" id="L53">			this.vehiculoRepository.guardar(vehiculo);</span>
+<span class="fc" id="L54">			this.estacionamientoRepository.guardar(estacionamiento);</span>
+		}
+<span class="nc" id="L56">		catch (DataIntegrityViolationException e) {</span>
+<span class="nc" id="L57">			throw e;</span>
+		}
+<span class="nc" id="L59">		catch(Exception e) {</span>
+<span class="nc" id="L60">			throw new Exception(&quot;error desconocido&quot;);</span>
+<span class="fc" id="L61">		}</span>
+		
+<span class="fc" id="L63">	}	</span>
+	
+	public void validarDisponibilidadEstacionamiento(Vehiculo vehiculo) throws Exception {    
+		
+<span class="fc" id="L67">		long cupoparqueadero=this.estacionamientoRepository.getAll()			</span>
+<span class="fc" id="L68">				.stream()				</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">				.filter(e -&gt; e.getVehiculo().getIdTipoVehiculo() == vehiculo.getIdTipoVehiculo()).count();</span>
+		
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		if(vehiculo.getIdTipoVehiculo() == TipoVehiculoEnum.CARRO.getValue()){</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">			if (cupoparqueadero&gt;this.DISPONIBILIDADCARRO)</span>
+<span class="fc" id="L73">				throw new VehiculoException(&quot;parqueadero se encuentra lleno&quot;);</span>
+<span class="pc bpc" id="L74" title="2 of 4 branches missed.">		}else if(vehiculo.getIdTipoVehiculo() == TipoVehiculoEnum.MOTO.getValue() &amp;&amp; cupoparqueadero&gt;this.DISPONIBILIDADMOTO) {</span>
+<span class="nc" id="L75">		     		throw new VehiculoException(&quot;parqueadero se encuentra lleno&quot;);</span>
+		}		
+<span class="fc" id="L77">	}</span>
+	public void validarPlaca(Vehiculo vehiculo,DayOfWeek dayOfWeek) throws VehiculoException {
+<span class="fc" id="L79">		char letra = vehiculo.getPlaca().replaceAll(&quot;[^a-zA-Z]+&quot;, &quot;&quot;).toUpperCase().charAt(0);</span>
+<span class="fc bfc" id="L80" title="All 4 branches covered.">		if( letra=='A' &amp;&amp; puedeIngresar(dayOfWeek.getValue())) {				</span>
+<span class="fc" id="L81">			throw new VehiculoException(&quot;No puede parquear el dia de hoy&quot;);			</span>
+		}
+<span class="fc" id="L83">	}</span>
+	private boolean  puedeIngresar(int dayOfWeek) {		
+<span class="fc" id="L85">		List&lt;Integer&gt; lista = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L86">		lista.add(1);</span>
+<span class="fc" id="L87">		lista.add(7);</span>
+<span class="fc" id="L88">		return lista.contains(dayOfWeek);		</span>
+	}
+
+	public List&lt;Estacionamiento&gt; findAllVehiculos() throws VehiculoException {		
+<span class="fc" id="L92">		return this.estacionamientoRepository.getAll();</span>
+	}
+	@Transactional
+	public Factura salidaVehiculo(SalidaVehiculoDto vehiculoDto) throws VehiculoException {		
+		try {			
+<span class="fc" id="L97">			Vehiculo vehiculo =this.vehiculoRepository.findByPlacaWithEstacionamiento(vehiculoDto.getPlaca());//</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">			if(vehiculo.getEstacionamiento()==null) {</span>
+<span class="fc" id="L99">				throw new VehiculoException(&quot;el vehiculo no se encuentra en el estacionamiento&quot;);</span>
+			}	
+<span class="fc" id="L101">			Estacionamiento estacionamiento=vehiculo.getEstacionamiento();				</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">			if(vehiculoDto.getFechaHoraFin().before(estacionamiento.getFechaHoraInicio())) {</span>
+<span class="fc" id="L103">				throw new IllegalArgumentException(&quot;la fecha de salida debe ser mayor a la fecha de ingreso&quot;);</span>
+			}
+<span class="fc" id="L105">			Factura factura = crearFactura(vehiculo,estacionamiento,vehiculoDto);</span>
+<span class="fc" id="L106">			this.facturaRepository.guardar(factura);</span>
+<span class="fc" id="L107">			this.estacionamientoRepository.delete(estacionamiento);</span>
+<span class="fc" id="L108">			return factura;</span>
+		}
+<span class="fc" id="L110">		catch(ObjectNotFoundException | HibernateSystemException | VehiculoException e) {</span>
+<span class="fc" id="L111">			throw new VehiculoException(&quot;el vehiculo no se encuentra en el estacionamiento&quot;,e);</span>
+		}		
+<span class="fc" id="L113">		catch (Exception e) {			</span>
+<span class="fc" id="L114">			throw e;</span>
+		}		
+	}
+	public Factura crearFactura(Vehiculo vehiculo ,Estacionamiento estacionamiento,SalidaVehiculoDto salidaVehiculo ) {
+<span class="fc" id="L118">		double valoraPagar = this.getValorAPagar(vehiculo,estacionamiento,salidaVehiculo);</span>
+<span class="fc" id="L119">		return new Factura(vehiculo.getPlaca(),estacionamiento.getFechaHoraInicio() ,salidaVehiculo.getFechaHoraFin(), vehiculo.getTariaHora(),vehiculo.getTariaDia(), valoraPagar);</span>
+	}
+	public double getValorAPagar(Vehiculo vehiculo, Estacionamiento estacionamiento, SalidaVehiculoDto salidaVehiculoDto ){
+		
+<span class="fc" id="L123">		 Timestamp fechaHoraFin = salidaVehiculoDto.getFechaHoraFin();</span>
+<span class="fc" id="L124">		 Timestamp fechaHoraInicio = estacionamiento.getFechaHoraInicio();</span>
+<span class="fc" id="L125">		 int diferenciadias =(int)(( fechaHoraFin.getTime() -  fechaHoraInicio.getTime())/86400000);</span>
+<span class="fc" id="L126">		 int diferenciaHoras =(int)((fechaHoraFin.getTime() - fechaHoraInicio.getTime())/3600000)-(diferenciadias*24);</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		 if(diferenciaHoras&gt;=9) {</span>
+<span class="fc" id="L128">				diferenciadias++;</span>
+<span class="fc" id="L129">				diferenciaHoras=0;</span>
+		 }
+<span class="fc" id="L131">		 double valorPagar=calcularDia(diferenciadias,vehiculo);</span>
+<span class="fc" id="L132">		 valorPagar += calcularHora(diferenciaHoras,vehiculo);</span>
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">		 return vehiculo.getCilindraje()&gt; 500 ?  valorPagar + vehiculo.getTarifaAdicionalCilidndraje()  : valorPagar;</span>
+		
+	}
+	public double calcularDia(int horas,Vehiculo vehiculo) {
+<span class="fc" id="L137">		return  horas*vehiculo.getTariaDia();</span>
+	}
+	public double calcularHora(int horas,Vehiculo vehiculo) {			
+<span class="fc" id="L140">			return (double) horas * vehiculo.getTariaHora();</span>
+	}
+	
+	
+	public Cotizacion estimarValorPagar(String placa) throws VehiculoException {
+<span class="nc" id="L145">		Estacionamiento estacionamiento= this.estacionamientoRepository.get(placa);	</span>
+<span class="nc" id="L146">		Vehiculo vehiculo = this.vehiculoRepository.get(placa);</span>
+<span class="nc" id="L147">		estacionamiento.setVehiculo(vehiculo);</span>
+<span class="nc" id="L148">		LocalDateTime localDate = LocalDateTime.now();	</span>
+<span class="nc" id="L149">        Timestamp fechaHorasalida = Timestamp.valueOf(localDate);	        </span>
+<span class="nc" id="L150">        double valorpagar =this.getValorAPagar(vehiculo, estacionamiento, new SalidaVehiculoDto(placa, fechaHorasalida)) ;</span>
+<span class="nc" id="L151">		return new Cotizacion(estacionamiento, valorpagar);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

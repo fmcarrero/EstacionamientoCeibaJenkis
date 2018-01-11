@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="co.com.testweb.ApiErrorTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-11T20:46:13" hostname="DESKTOP-BD43J8F" time="0.034">
+<testsuite name="co.com.testweb.ApiErrorTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-11T21:45:41" hostname="DESKTOP-BD43J8F" time="0.038">
   <properties/>
-  <testcase name="ApiErrorOk" classname="co.com.testweb.ApiErrorTest" time="0.028"/>
+  <testcase name="ApiErrorOk" classname="co.com.testweb.ApiErrorTest" time="0.033"/>
   <testcase name="getStatusOk" classname="co.com.testweb.ApiErrorTest" time="0.004"/>
   <testcase name="ApiError2Ok" classname="co.com.testweb.ApiErrorTest" time="0.0"/>
   <testcase name="ApiError3Ok" classname="co.com.testweb.ApiErrorTest" time="0.0"/>

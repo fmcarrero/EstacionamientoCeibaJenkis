@@ -34,13 +34,14 @@ public abstract class VehiculoEntity implements Serializable  {
 	 @PrimaryKeyJoinColumn		
 	 protected EstacionamientoEntity estacionamiento;
 	 
+	 protected VehiculoEntity(){}
+	 
 	 public VehiculoEntity(String placa, String color, long cilindraje){
 		 this.placa= placa;
 		 this.color=color;
 		 this.cilindraje = cilindraje;
 	 }
 	public EstacionamientoEntity getEstacionamiento(){ return this.estacionamiento;}
-	protected VehiculoEntity(){}
 	
 	public void setEstacionamiento (EstacionamientoEntity estacionamiento) {
 		 this.estacionamiento = estacionamiento;

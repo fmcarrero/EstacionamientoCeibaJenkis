@@ -40,6 +40,7 @@ public class ApiErrorTest {
 		ApiError apiError= new ApiError(HttpStatus.BAD_REQUEST, "error",new Exception("error"));
 		//assert
 		assertEquals(apiError.getMessage(), "error");
+		assertNotNull(apiError.getDebugMessage());
 	}
 	
 }

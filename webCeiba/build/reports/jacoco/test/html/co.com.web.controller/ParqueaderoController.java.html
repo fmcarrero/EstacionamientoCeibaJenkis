@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParqueaderoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">webCeiba</a> &gt; <a href="index.source.html" class="el_package">co.com.web.controller</a> &gt; <span class="el_source">ParqueaderoController.java</span></div><h1>ParqueaderoController.java</h1><pre class="source lang-java linenums">package co.com.web.controller;
+
+import java.util.List;
+
+import org.dto.SalidaVehiculoDto;
+import org.excepciones.VehiculoException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import co.com.domain.Cotizacion;
+import co.com.domain.Estacionamiento;
+import co.com.domain.Factura;
+import co.com.domain.Vehiculo;
+import co.com.domain.Vigilante;
+
+
+@CrossOrigin(origins = &quot;*&quot;)
+@RestController
+@RequestMapping(&quot;/api&quot;)
+<span class="nc" id="L28">public class ParqueaderoController {</span>
+	
+	@Autowired
+	private Vigilante vigilante;
+	
+	
+	@RequestMapping(value=&quot;/Vehiculo/&quot;,method = RequestMethod.POST)
+    public ResponseEntity&lt;String&gt;  createVehiculo(@RequestBody Vehiculo vehiculo,   UriComponentsBuilder ucBuilder) throws Exception {		
+<span class="nc" id="L36">		this.vigilante.registrarVehiculo(vehiculo);		</span>
+<span class="nc" id="L37">		return new ResponseEntity&lt;&gt;(&quot;Vehiculo Creado&quot;,HttpStatus.CREATED);</span>
+    }
+	
+	 @RequestMapping(value = &quot;/Vehiculo/&quot;, method = RequestMethod.GET)
+	    public ResponseEntity&lt;List&lt;Estacionamiento&gt;&gt; listAllVehiculos() throws VehiculoException {
+<span class="nc" id="L42">		   	List&lt;Estacionamiento&gt; estacionamientos = this.vigilante.findAllVehiculos();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">	        if (estacionamientos.isEmpty()) {</span>
+<span class="nc" id="L44">	            return new ResponseEntity(HttpStatus.NO_CONTENT);</span>
+	            // You many decide to return HttpStatus.NOT_FOUND
+	        }	        
+<span class="nc" id="L47">	        return new ResponseEntity&lt;&gt; (estacionamientos, HttpStatus.OK);</span>
+	 }
+	 
+	 @RequestMapping(value=&quot;/SalidaVehiculo/&quot;,method = RequestMethod.POST)
+	    public ResponseEntity&lt;Factura&gt;  salidaVehiculo(@RequestBody SalidaVehiculoDto vehiculo,   UriComponentsBuilder ucBuilder) throws Exception{
+<span class="nc" id="L52">			Factura factura= this.vigilante.salidaVehiculo(vehiculo);</span>
+<span class="nc" id="L53">			return new ResponseEntity&lt;&gt;(factura, HttpStatus.CREATED);</span>
+	    }
+	 
+	 @RequestMapping(value = &quot;/Estacionamiento/{id}&quot;, method = RequestMethod.GET)
+	    public ResponseEntity&lt;Cotizacion&gt; getEstacionamiento(@PathVariable(&quot;id&quot;) String id) throws VehiculoException {	
+<span class="nc" id="L58">	        Cotizacion cotizacion = this.vigilante.estimarValorPagar(id);	        </span>
+<span class="nc" id="L59">	        return new ResponseEntity&lt;&gt;( cotizacion, HttpStatus.OK)  ;</span>
+	 }
+	 @RequestMapping(value = &quot;/Vehiculo/{id}&quot;, method = RequestMethod.GET)
+	    public ResponseEntity&lt;Vehiculo&gt; getVehiculo(@PathVariable(&quot;id&quot;) String id) throws VehiculoException {	
+<span class="nc" id="L63">	        Vehiculo vehiculo = this.vigilante.finVehiculoByPlaca(id);	        </span>
+<span class="nc" id="L64">	        return new ResponseEntity&lt;&gt;( vehiculo, HttpStatus.OK)  ;</span>
+	 }
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

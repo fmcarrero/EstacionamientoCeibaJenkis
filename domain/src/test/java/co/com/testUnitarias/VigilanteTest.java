@@ -189,7 +189,7 @@ public class VigilanteTest {
 	}
 	
 	@Test 
-	public void getValorAPagarOk(){
+	public void getValorAPagarTest(){
 		//arrage
 		LocalDateTime hoy = LocalDateTime.of(2018, 1, 2,0,0);
 		LocalDateTime masTarde = hoy.withHour(10);

@@ -69,7 +69,7 @@ public class VehiculoFactoryTest {
 	@Test
 	public void getVehiculoWithOUTEstacionamientoTestCarroOk() throws VehiculoException{
 		//arrange
-		VehiculoEntity entity = new VehiculoEntityBuilder().buildCarro();
+		CarroEntity entity = new VehiculoEntityBuilder().buildCarro();
 		//act		
 		Vehiculo vehiculo = factory.getVehiculoWithOUTEstacionamiento(entity);
 		//assert
@@ -78,7 +78,7 @@ public class VehiculoFactoryTest {
 	@Test
 	public void getVehiculoWithOUTEstacionamientoTestMotoOk() throws VehiculoException{
 		//arrange
-		VehiculoEntity entity = new VehiculoEntityBuilder().buildMoto();
+		MotoEntity entity = new VehiculoEntityBuilder().buildMoto();
 		//act		
 		Vehiculo vehiculo = factory.getVehiculoWithOUTEstacionamiento(entity);
 		//assert

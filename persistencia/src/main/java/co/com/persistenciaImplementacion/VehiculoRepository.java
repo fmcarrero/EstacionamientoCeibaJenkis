@@ -19,9 +19,6 @@ public class VehiculoRepository implements IVehiculoRepository {
 	
 	@Autowired
 	private IVehiculoFactory vehiculoFactory;
-	
-	
-
 
 	@Override
 	public Vehiculo findByPlacaWithEstacionamiento(String placa) throws VehiculoException {

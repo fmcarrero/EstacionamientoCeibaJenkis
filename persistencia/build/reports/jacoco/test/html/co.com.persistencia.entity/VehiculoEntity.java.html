@@ -34,27 +34,28 @@ public abstract class VehiculoEntity implements Serializable  {
 	 @PrimaryKeyJoinColumn		
 	 protected EstacionamientoEntity estacionamiento;
 	 
-<span class="fc" id="L37">	 public VehiculoEntity(String placa, String color, long cilindraje){</span>
-<span class="fc" id="L38">		 this.placa= placa;</span>
-<span class="fc" id="L39">		 this.color=color;</span>
-<span class="fc" id="L40">		 this.cilindraje = cilindraje;</span>
-<span class="fc" id="L41">	 }</span>
-<span class="fc" id="L42">	public EstacionamientoEntity getEstacionamiento(){ return this.estacionamiento;}</span>
-<span class="nc" id="L43">	protected VehiculoEntity(){}</span>
+<span class="nc" id="L37">	 protected VehiculoEntity(){}</span>
+	 
+<span class="fc" id="L39">	 public VehiculoEntity(String placa, String color, long cilindraje){</span>
+<span class="fc" id="L40">		 this.placa= placa;</span>
+<span class="fc" id="L41">		 this.color=color;</span>
+<span class="fc" id="L42">		 this.cilindraje = cilindraje;</span>
+<span class="fc" id="L43">	 }</span>
+<span class="fc" id="L44">	public EstacionamientoEntity getEstacionamiento(){ return this.estacionamiento;}</span>
 	
 	public void setEstacionamiento (EstacionamientoEntity estacionamiento) {
-<span class="fc" id="L46">		 this.estacionamiento = estacionamiento;</span>
-<span class="fc" id="L47">	}</span>
+<span class="fc" id="L47">		 this.estacionamiento = estacionamiento;</span>
+<span class="fc" id="L48">	}</span>
 	public String getPlaca() {
-<span class="fc" id="L49">		return placa;</span>
+<span class="fc" id="L50">		return placa;</span>
 	}
 
 	public String getColor() {
-<span class="fc" id="L53">		return color;</span>
+<span class="fc" id="L54">		return color;</span>
 	}
 
 	public long getCilindraje() {
-<span class="fc" id="L57">		return cilindraje;</span>
+<span class="fc" id="L58">		return cilindraje;</span>
 	}	 
 	 
 }
