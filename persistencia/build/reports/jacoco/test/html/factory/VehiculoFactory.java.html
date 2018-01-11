@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VehiculoFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">persistencia</a> &gt; <a href="index.source.html" class="el_package">factory</a> &gt; <span class="el_source">VehiculoFactory.java</span></div><h1>VehiculoFactory.java</h1><pre class="source lang-java linenums">package factory;
+import org.enumvehiculos.TipoVehiculoEnum;
+import org.excepciones.VehiculoException;
+import org.springframework.stereotype.Service;
+
+import co.com.domain.Carro;
+import co.com.domain.Estacionamiento;
+import co.com.domain.Moto;
+import co.com.domain.Vehiculo;
+import co.com.persistencia.entity.CarroEntity;
+import co.com.persistencia.entity.EstacionamientoEntity;
+import co.com.persistencia.entity.MotoEntity;
+import co.com.persistencia.entity.VehiculoEntity;
+
+
+@Service
+<span class="fc" id="L17">public class VehiculoFactory implements IVehiculoFactory{</span>
+	
+	   public Vehiculo getVehiculo(VehiculoEntity vehiculo) throws VehiculoException{
+<span class="fc" id="L20">		  String classObject = vehiculo.getClass().getSimpleName().toUpperCase().replaceAll(&quot;ENTITY&quot;, &quot;&quot;);</span>
+<span class="fc" id="L21">		  EstacionamientoEntity entityEstacionamiento = vehiculo.getEstacionamiento();</span>
+<span class="fc" id="L22">		  Estacionamiento estacionamiento =new Estacionamiento(entityEstacionamiento.getPlaca(),entityEstacionamiento.getFechaHoraInicio(),entityEstacionamiento.getObservacion() );</span>
+	      Vehiculo vehiculo2;
+<span class="fc bfc" id="L24" title="All 2 branches covered.">		  if(classObject.equals(TipoVehiculoEnum.CARRO.toString())){</span>
+<span class="fc" id="L25">			  vehiculo2 =new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    	  </span>
+<span class="fc" id="L26">			  vehiculo2.setEstacionamiento(estacionamiento);</span>
+	    	         
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">	      } else if(classObject.equals(TipoVehiculoEnum.MOTO.toString())){</span>
+<span class="fc" id="L29">	    	  vehiculo2= new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());</span>
+<span class="fc" id="L30">	    	  vehiculo2.setEstacionamiento(estacionamiento);</span>
+	         	         
+	      }else{    
+<span class="nc" id="L33">	    	  throw new VehiculoException(&quot;Vehiculo no permitido&quot;);</span>
+	    	  }
+<span class="fc" id="L35">		  return vehiculo2;</span>
+	   }
+
+	@Override
+	public VehiculoEntity getVehiculoEntity(Vehiculo vehiculo) throws VehiculoException {
+		
+	
+<span class="fc bfc" id="L42" title="All 2 branches covered.">	      if(vehiculo.getIdTipoVehiculo() ==TipoVehiculoEnum.CARRO.getValue()){</span>
+<span class="fc" id="L43">	         return new CarroEntity(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());</span>
+	         
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">	      } else if(vehiculo.getIdTipoVehiculo() ==TipoVehiculoEnum.MOTO.getValue()){</span>
+<span class="fc" id="L46">	         return new MotoEntity(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());</span>
+	         
+	      }	      
+<span class="nc" id="L49">	      throw new VehiculoException(&quot;Vehiculo no permitido&quot;);</span>
+	}
+
+	@Override
+	public Vehiculo getVehiculoWithOUTEstacionamiento(VehiculoEntity vehiculo) throws VehiculoException {
+<span class="fc" id="L54">		String classObject = vehiculo.getClass().getSimpleName().toUpperCase().replaceAll(&quot;ENTITY&quot;, &quot;&quot;);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">		if(classObject.equals(TipoVehiculoEnum.CARRO.toString())){</span>
+<span class="fc" id="L56">	    	 return new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	        </span>
+	         
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">	      } else if(classObject.equals(TipoVehiculoEnum.MOTO.toString())){</span>
+<span class="fc" id="L59">	    	  return new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    		         </span>
+	      }	      
+<span class="nc" id="L61">	      throw new VehiculoException(&quot;Vehiculo no permitido&quot;);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

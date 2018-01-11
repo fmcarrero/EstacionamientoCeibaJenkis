@@ -27,8 +27,8 @@ public class Vigilante {
 	private IVehiculoRepository vehiculoRepository;
 	private IEstacionamientoRepository estacionamientoRepository;
 	private IFacturaRepository facturaRepository;
-	private static final int disponibilidadMotos = 10; 
-	private static final int disponibilidadCarro = 20; 
+	private static final int DISPONIBILIDADMOTO = 10; 
+	private static final int DISPONIBILIDADCARRO = 20; 
 	
 	public Vigilante(IVehiculoRepository vehiculoRepository, IEstacionamientoRepository estacionamientoRepository,IFacturaRepository facturaRepository){
 		this.vehiculoRepository =vehiculoRepository;
@@ -69,9 +69,9 @@ public class Vigilante {
 				.filter(e -> e.getVehiculo().getIdTipoVehiculo() == vehiculo.getIdTipoVehiculo()).count();
 		
 		if(vehiculo.getIdTipoVehiculo() == TipoVehiculoEnum.CARRO.getValue()){
-			if (cupoparqueadero>this.disponibilidadCarro)
+			if (cupoparqueadero>this.DISPONIBILIDADCARRO)
 				throw new VehiculoException("parqueadero se encuentra lleno");
-		}else if(vehiculo.getIdTipoVehiculo() == TipoVehiculoEnum.MOTO.getValue() && cupoparqueadero>this.disponibilidadMotos) {
+		}else if(vehiculo.getIdTipoVehiculo() == TipoVehiculoEnum.MOTO.getValue() && cupoparqueadero>this.DISPONIBILIDADMOTO) {
 		     		throw new VehiculoException("parqueadero se encuentra lleno");
 		}		
 	}

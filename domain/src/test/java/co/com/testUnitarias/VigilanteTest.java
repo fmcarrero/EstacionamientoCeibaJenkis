@@ -20,10 +20,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import co.com.builder.EstacionamientoTestDataBuilder;
-import co.com.builder.FacturaTestDataBuilder;
-import co.com.builder.SalidaVehiculoDtoTestDataBuilder;
-import co.com.builder.VehiculoTestDataBuilder;
+import co.com.builder.domain.EstacionamientoTestDataBuilder;
+import co.com.builder.domain.FacturaTestDataBuilder;
+import co.com.builder.domain.SalidaVehiculoDtoTestDataBuilder;
+import co.com.builder.domain.VehiculoTestDataBuilder;
 import co.com.domain.Estacionamiento;
 import co.com.domain.Factura;
 import co.com.domain.Vehiculo;
@@ -31,11 +31,6 @@ import co.com.domain.Vigilante;
 import co.com.repository.IEstacionamientoRepository;
 import co.com.repository.IFacturaRepository;
 import co.com.repository.IVehiculoRepository;
-
-
-
-
-
 
 
 public class VigilanteTest {

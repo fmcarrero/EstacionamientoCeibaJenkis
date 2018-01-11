@@ -34,7 +34,7 @@ public class ParqueaderoController {
 	@RequestMapping(value="/Vehiculo/",method = RequestMethod.POST)
     public ResponseEntity<String>  createVehiculo(@RequestBody Vehiculo vehiculo,   UriComponentsBuilder ucBuilder) throws Exception {		
 		this.vigilante.registrarVehiculo(vehiculo);		
-		return new ResponseEntity<String>("Vehiculo Creado",HttpStatus.CREATED);
+		return new ResponseEntity<>("Vehiculo Creado",HttpStatus.CREATED);
     }
 	
 	 @RequestMapping(value = "/Vehiculo/", method = RequestMethod.GET)
@@ -44,7 +44,7 @@ public class ParqueaderoController {
 	            return new ResponseEntity(HttpStatus.NO_CONTENT);
 	            // You many decide to return HttpStatus.NOT_FOUND
 	        }	        
-	        return new ResponseEntity<List<Estacionamiento>> (estacionamientos, HttpStatus.OK);
+	        return new ResponseEntity<> (estacionamientos, HttpStatus.OK);
 	 }
 	 
 	 @RequestMapping(value="/SalidaVehiculo/",method = RequestMethod.POST)

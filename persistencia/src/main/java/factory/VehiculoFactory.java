@@ -20,18 +20,19 @@ public class VehiculoFactory implements IVehiculoFactory{
 		  String classObject = vehiculo.getClass().getSimpleName().toUpperCase().replaceAll("ENTITY", "");
 		  EstacionamientoEntity entityEstacionamiento = vehiculo.getEstacionamiento();
 		  Estacionamiento estacionamiento =new Estacionamiento(entityEstacionamiento.getPlaca(),entityEstacionamiento.getFechaHoraInicio(),entityEstacionamiento.getObservacion() );
-	      if(classObject.equals(TipoVehiculoEnum.CARRO.toString())){
-	    	  Carro carro = new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    	  
-	          carro.setEstacionamiento(estacionamiento);
-	    	  return carro;
-	         
+	      Vehiculo vehiculo2;
+		  if(classObject.equals(TipoVehiculoEnum.CARRO.toString())){
+			  vehiculo2 =new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    	  
+			  vehiculo2.setEstacionamiento(estacionamiento);
+	    	         
 	      } else if(classObject.equals(TipoVehiculoEnum.MOTO.toString())){
-	    	  Moto moto = new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());
-	    	  moto.setEstacionamiento(estacionamiento);
-	         return moto;
-	         
-	      }	      
-	      throw new VehiculoException("Vehiculo no permitido");
+	    	  vehiculo2= new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());
+	    	  vehiculo2.setEstacionamiento(estacionamiento);
+	         	         
+	      }else{    
+	    	  throw new VehiculoException("Vehiculo no permitido");
+	    	  }
+		  return vehiculo2;
 	   }
 
 	@Override
@@ -52,12 +53,10 @@ public class VehiculoFactory implements IVehiculoFactory{
 	public Vehiculo getVehiculoWithOUTEstacionamiento(VehiculoEntity vehiculo) throws VehiculoException {
 		String classObject = vehiculo.getClass().getSimpleName().toUpperCase().replaceAll("ENTITY", "");
 		if(classObject.equals(TipoVehiculoEnum.CARRO.toString())){
-	    	 return new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    	  
-	        
+	    	 return new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	        
 	         
 	      } else if(classObject.equals(TipoVehiculoEnum.MOTO.toString())){
-	    	  return new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());
-	    		         
+	    	  return new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    		         
 	      }	      
 	      throw new VehiculoException("Vehiculo no permitido");
 	}

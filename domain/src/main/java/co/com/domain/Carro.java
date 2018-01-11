@@ -11,6 +11,7 @@ public class Carro extends Vehiculo {
 		super(placa, color, cilindraje);
 	}
 	
+	
 	@Override
 	public int getIdTipoVehiculo(){
 		return TipoVehiculoEnum.CARRO.getValue();
@@ -22,4 +23,6 @@ public class Carro extends Vehiculo {
 	public double getTariaHora(){ return this.tarifaHora;}
 	@Override
 	public double getTarifaAdicionalCilidndraje() {return this.tarifaAdicionalCilidndraje;}
+	
+	
 }
