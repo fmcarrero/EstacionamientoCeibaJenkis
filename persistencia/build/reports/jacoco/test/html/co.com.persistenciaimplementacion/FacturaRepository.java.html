@@ -9,7 +9,7 @@ import co.com.persistencia.entity.FacturaEntity;
 import co.com.repository.IFacturaRepository;
 
 @Repository
-<span class="nc" id="L12">public class FacturaRepository  implements IFacturaRepository{</span>
+<span class="fc" id="L12">public class FacturaRepository  implements IFacturaRepository{</span>
 
 	@Autowired
 	private ICrudFacturaRepository crudFacturaRepository;
@@ -17,8 +17,8 @@ import co.com.repository.IFacturaRepository;
 
 	@Override
 	public void guardar(Factura factura) {
-<span class="nc" id="L20">		FacturaEntity entity = new FacturaEntity(factura.getPlaca(), factura.getFechaHoraFin(), factura.getFechaHoraFin(),factura.getTarifaHora(), factura.getTarifaDia(),factura.getValorPagar());</span>
-<span class="nc" id="L21">		this.crudFacturaRepository.save(entity);</span>
-<span class="nc" id="L22">	}</span>
+<span class="fc" id="L20">		FacturaEntity entity = new FacturaEntity(factura.getPlaca(), factura.getFechaHoraFin(), factura.getFechaHoraFin(),factura.getTarifaHora(), factura.getTarifaDia(),factura.getValorPagar());</span>
+<span class="fc" id="L21">		this.crudFacturaRepository.save(entity);</span>
+<span class="fc" id="L22">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

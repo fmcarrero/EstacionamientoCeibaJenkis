@@ -94,4 +94,17 @@ public class VehiculoRepositoryTest {
 		//assert
 		assertNotNull(vehiculoEsperado);
 	}
+	@Test (expected = ObjectNotFoundException.class)
+	public void getFailTest() throws VehiculoException{
+		//arrange
+		String placa ="xcv-765";	
+		VehiculoEntity entity = new VehiculoEntityBuilder().withPlaca(placa).buildCarro();
+		Vehiculo vehiculo = new VehiculoTestDataBuilder().withPlaca(placa).buildCarro();
+		Mockito.when(this.vehiculoFactory.getVehiculoWithOUTEstacionamiento(entity)).thenReturn(vehiculo);
+		Mockito.when(this.crudVehiculoRepository.findByPlaca(placa)).thenReturn(null);
+		//act
+		Vehiculo vehiculoEsperado = this.vehiculoRepository.get(placa);
+		//assert
+	
+	}
 }
