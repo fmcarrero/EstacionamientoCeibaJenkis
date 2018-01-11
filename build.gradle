@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+    	classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+}
+
+allprojects {
+
+	repositories {
+		mavenCentral()		
+	}
+	
+	project.ext.junit = ['junit:junit:4.12']  	
+	project.ext.mockito = ['org.mockito:mockito-all:1.10.19']
+	project.ext.junitparams =  ['pl.pragmatists:JUnitParams:1.0.5']					
+    project.ext.dozer = ['net.sf.dozer:dozer:5.4.0']
+	project.ext.jserialcomm = ['com.fazecast:jSerialComm:1.3.11']
+	project.ext.mysql = ['mysql:mysql-connector-java:5.1.31']
+	project.ext.websocket = ['org.springframework.boot:spring-boot-starter-websocket:1.4.3.RELEASE']
+	project.ext.springtest = ['org.springframework.boot:spring-boot-starter-test:1.4.3.RELEASE']
+	project.ext.springdata = ['org.springframework.boot:spring-boot-starter-data-jpa:1.4.3.RELEASE']
+	project.ext.springstarter = ['org.springframework.boot:spring-boot-starter:1.4.3.RELEASE']
+	project.ext.reactorbus = ['io.projectreactor:reactor-bus:2.0.8.RELEASE']
+	project.ext.log4j = ['log4j:log4j:1.2.17']
+	project.ext.googleguava = ['com.google.guava:guava:21.0']
+	project.ext.asynchttpclient = ['org.asynchttpclient:async-http-client:2.0.29']
+	project.ext.mustache = ['com.github.spullara.mustache.java:compiler:0.9.4']
+	project.ext.quartz = ['org.quartz-scheduler:quartz:2.2.3']
+	project.ext.springquartz = ['org.springframework:spring-context-support:4.2.4.RELEASE']
+		
+}

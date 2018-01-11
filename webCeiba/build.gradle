@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'jacoco'
+
+version = '1.0'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    all*.exclude module : 'log4j'
+    all*.exclude module : 'slf4j-log4j12'    
+}
+
+dependencies {
+    
+    compile project (':domain') 
+    compile project(":persistencia")
+  compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+   compile project.ext.log4j
+	compile project.ext.quartz
+    compile project.ext.springquartz 
+	compile project.ext.websocket
+    testCompile project.ext.junit
+    testCompile project.ext.mockito
+    testCompile project.ext.junitparams
+    testCompile project.ext.springtest
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Estacionamiento',
+                   'Implementation-Version': version
+                   
+    }
+    
+}
+
+test {
+	jacoco {
+		append = false
+		destinationFile = file("jacoco/jacocoTest.exec")
+	}
+	reports.junitXml.destination =  file("jacoco/test-results")
+}

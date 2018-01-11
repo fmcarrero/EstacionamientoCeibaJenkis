@@ -1,0 +1,44 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+
+version = '1.0'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+dependencies {
+	
+	compile project (':domain')
+	compile project (':transversal')
+	
+    compile project.ext.mysql
+    compile project.ext.springdata
+    compile project.ext.googleguava
+    compile project.ext.asynchttpclient
+    compile project.ext.mustache
+    compile project.ext.dozer
+    
+    testCompile project.ext.junit
+    testCompile project.ext.mockito
+    testCompile project.ext.junitparams
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'repository',
+                   'Implementation-Version': version
+    }
+}
+
+test {
+	jacoco {
+		append = false
+		destinationFile = file("jacoco/jacocoTest.exec")
+	}
+	reports.junitXml.destination =  file("jacoco/test-results")
+}
+
+jacocoTestReport.dependsOn(test)
+jar.dependsOn(jacocoTestReport)
