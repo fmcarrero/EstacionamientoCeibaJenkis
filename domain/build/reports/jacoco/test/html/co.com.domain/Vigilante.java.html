@@ -116,7 +116,7 @@ public class Vigilante {
 	}
 	public Factura crearFactura(Vehiculo vehiculo ,Estacionamiento estacionamiento,SalidaVehiculoDto salidaVehiculo ) {
 <span class="fc" id="L118">		double valoraPagar = this.getValorAPagar(vehiculo,estacionamiento,salidaVehiculo);</span>
-<span class="fc" id="L119">		return new Factura(vehiculo.getPlaca(),estacionamiento.getFechaHoraInicio() ,salidaVehiculo.getFechaHoraFin(), vehiculo.getTariaHora(),vehiculo.getTariaDia(), valoraPagar);</span>
+<span class="fc" id="L119">		return new Factura(vehiculo.getPlaca(),estacionamiento.getFechaHoraInicio() ,salidaVehiculo.getFechaHoraFin(), vehiculo.getTarifaHora(),vehiculo.getTarifaDia(), valoraPagar);</span>
 	}
 	public double getValorAPagar(Vehiculo vehiculo, Estacionamiento estacionamiento, SalidaVehiculoDto salidaVehiculoDto ){
 		
@@ -134,10 +134,10 @@ public class Vigilante {
 		
 	}
 	public double calcularDia(int horas,Vehiculo vehiculo) {
-<span class="fc" id="L137">		return  horas*vehiculo.getTariaDia();</span>
+<span class="fc" id="L137">		return  horas*vehiculo.getTarifaDia();</span>
 	}
 	public double calcularHora(int horas,Vehiculo vehiculo) {			
-<span class="fc" id="L140">			return (double) horas * vehiculo.getTariaHora();</span>
+<span class="fc" id="L140">			return (double) horas * vehiculo.getTarifaHora();</span>
 	}
 	
 	

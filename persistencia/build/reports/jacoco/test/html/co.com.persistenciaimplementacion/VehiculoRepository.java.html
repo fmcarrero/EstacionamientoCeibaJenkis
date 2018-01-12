@@ -23,7 +23,7 @@ import factory.IVehiculoFactory;
 	@Override
 	public Vehiculo findByPlacaWithEstacionamiento(String placa) throws VehiculoException {
 <span class="fc" id="L25">		VehiculoEntity vehiculo= this.crudVehiculoRepository.findByPlaca(placa);</span>
-<span class="pc bpc" id="L26" title="1 of 4 branches missed.">		if(vehiculo == null || vehiculo.getEstacionamiento() == null){</span>
+<span class="fc bfc" id="L26" title="All 4 branches covered.">		if(vehiculo == null || vehiculo.getEstacionamiento() == null){</span>
 <span class="fc" id="L27">			throw new ObjectNotFoundException(&quot;vehiculo no encontrado&quot;,placa);</span>
 		}
 <span class="fc" id="L29">		return this.vehiculoFactory.getVehiculo(vehiculo);</span>

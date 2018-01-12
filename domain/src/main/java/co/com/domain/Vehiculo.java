@@ -11,13 +11,14 @@ public class Vehiculo {
 	 private String observacion;
 	 private Estacionamiento estacionamiento;
 	 private int idTipoVehiculo;
-	 private int valorCero =0;
-	 
+	 private int tarifaDia =0;
+	 private int tarifaHora=0;
+	 private int tarifaAdicionalCilidndraje;
 	
 	 
-	 public double getTariaDia(){ return valorCero;}
-	 public double getTariaHora(){ return valorCero;}
-	 public double getTarifaAdicionalCilidndraje() {return valorCero;}
+	 public double getTarifaDia(){ return tarifaDia;}
+	 public double getTarifaHora(){ return tarifaHora;}
+	 public double getTarifaAdicionalCilidndraje() {return tarifaAdicionalCilidndraje;}
 	 
 	 public String getObservacion() {
 		return observacion;

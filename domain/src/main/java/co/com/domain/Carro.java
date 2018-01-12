@@ -17,10 +17,10 @@ public class Carro extends Vehiculo {
 		return TipoVehiculoEnum.CARRO.getValue();
 	}
 	@Override
-	public double getTariaDia(){ return this.tarifaDia;}
+	public double getTarifaDia(){ return this.tarifaDia;}
 	
 	@Override
-	public double getTariaHora(){ return this.tarifaHora;}
+	public double getTarifaHora(){ return this.tarifaHora;}
 	@Override
 	public double getTarifaAdicionalCilidndraje() {return this.tarifaAdicionalCilidndraje;}
 	

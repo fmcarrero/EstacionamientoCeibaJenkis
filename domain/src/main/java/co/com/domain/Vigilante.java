@@ -116,7 +116,7 @@ public class Vigilante {
 	}
 	public Factura crearFactura(Vehiculo vehiculo ,Estacionamiento estacionamiento,SalidaVehiculoDto salidaVehiculo ) {
 		double valoraPagar = this.getValorAPagar(vehiculo,estacionamiento,salidaVehiculo);
-		return new Factura(vehiculo.getPlaca(),estacionamiento.getFechaHoraInicio() ,salidaVehiculo.getFechaHoraFin(), vehiculo.getTariaHora(),vehiculo.getTariaDia(), valoraPagar);
+		return new Factura(vehiculo.getPlaca(),estacionamiento.getFechaHoraInicio() ,salidaVehiculo.getFechaHoraFin(), vehiculo.getTarifaHora(),vehiculo.getTarifaDia(), valoraPagar);
 	}
 	public double getValorAPagar(Vehiculo vehiculo, Estacionamiento estacionamiento, SalidaVehiculoDto salidaVehiculoDto ){
 		
@@ -134,10 +134,10 @@ public class Vigilante {
 		
 	}
 	public double calcularDia(int horas,Vehiculo vehiculo) {
-		return  horas*vehiculo.getTariaDia();
+		return  horas*vehiculo.getTarifaDia();
 	}
 	public double calcularHora(int horas,Vehiculo vehiculo) {			
-			return (double) horas * vehiculo.getTariaHora();
+			return (double) horas * vehiculo.getTarifaHora();
 	}
 	
 	

@@ -200,7 +200,7 @@ public class VigilanteTest {
 		double valorapagar = this.vigilante.getValorAPagar(vehiculo, estacionamiento, salidaVehiculoDto);
 		System.out.println(valorapagar);
 		//assert
-		assertEquals(valorapagar, vehiculo.getTariaDia(),0);
+		assertEquals(valorapagar, vehiculo.getTarifaDia(),0);
 	}
 	
 }

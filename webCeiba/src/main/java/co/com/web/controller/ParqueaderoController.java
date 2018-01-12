@@ -32,7 +32,7 @@ public class ParqueaderoController {
 	
 	
 	@RequestMapping(value="/Vehiculo/",method = RequestMethod.POST)
-    public ResponseEntity<String>  createVehiculo(@RequestBody Vehiculo vehiculo,   UriComponentsBuilder ucBuilder) throws Exception {		
+    public ResponseEntity<String>  createVehiculo(@RequestBody Vehiculo vehiculo) throws Exception {		
 		this.vigilante.registrarVehiculo(vehiculo);		
 		return new ResponseEntity<>("Vehiculo Creado",HttpStatus.CREATED);
     }
@@ -48,13 +48,13 @@ public class ParqueaderoController {
 	 }
 	 
 	 @RequestMapping(value="/SalidaVehiculo/",method = RequestMethod.POST)
-	    public ResponseEntity<Factura>  salidaVehiculo(@RequestBody SalidaVehiculoDto vehiculo,   UriComponentsBuilder ucBuilder) throws Exception{
+	    public ResponseEntity<Factura>  salidaVehiculo(@RequestBody SalidaVehiculoDto vehiculo) throws Exception{
 			Factura factura= this.vigilante.salidaVehiculo(vehiculo);
 			return new ResponseEntity<>(factura, HttpStatus.CREATED);
 	    }
 	 
 	 @RequestMapping(value = "/Estacionamiento/{id}", method = RequestMethod.GET)
-	    public ResponseEntity<Cotizacion> getEstacionamiento(@PathVariable("id") String id) throws VehiculoException {	
+	    public ResponseEntity<Cotizacion> getCotizacionEstacionamiento(@PathVariable("id") String id) throws VehiculoException {	
 	        Cotizacion cotizacion = this.vigilante.estimarValorPagar(id);	        
 	        return new ResponseEntity<>( cotizacion, HttpStatus.OK)  ;
 	 }

@@ -67,6 +67,19 @@ public class VehiculoRepositoryTest {
 	    this.vehiculoRepository.findByPlacaWithEstacionamiento(placa);
 		//assert	   
 	}
+	@Test (expected =ObjectNotFoundException.class)
+	public void findByPlacaWithEstacionamientoFailNULLEstacionamientoTest() throws VehiculoException{
+		//arrange
+		String placa ="xcv-765";		
+		VehiculoEntity entity = new VehiculoEntityBuilder().withPlaca(placa).buildCarro();
+		EstacionamientoEntity entityestacionamiento = new EstacionamientoEntityBuilder().withPlaca(placa).build();
+		Vehiculo vehiculoMock = new VehiculoTestDataBuilder().withPlaca(placa).buildCarro();
+		Mockito.when(this.crudVehiculoRepository.findByPlaca(placa)).thenReturn(entity);
+		Mockito.when(this.vehiculoFactory.getVehiculo(entity)).thenReturn(vehiculoMock);
+		//act
+	    this.vehiculoRepository.findByPlacaWithEstacionamiento(placa);
+		//assert	   
+	}
 	
 	@Test
 	public void guardarTest() throws VehiculoException{
