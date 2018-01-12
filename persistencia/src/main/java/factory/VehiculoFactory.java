@@ -23,15 +23,14 @@ public class VehiculoFactory implements IVehiculoFactory{
 	      Vehiculo vehiculo2;
 		  if(classObject.equals(TipoVehiculoEnum.CARRO.toString())){
 			  vehiculo2 =new Carro(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    	  
-			  vehiculo2.setEstacionamiento(estacionamiento);
-	    	         
+			      	         
 	      } else if(classObject.equals(TipoVehiculoEnum.MOTO.toString())){
 	    	  vehiculo2= new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());
-	    	  vehiculo2.setEstacionamiento(estacionamiento);
-	         	         
+	    	  	         	         
 	      }else{    
 	    	  throw new VehiculoException("Vehiculo no permitido");
-	    	  }
+	      }
+		  vehiculo2.setEstacionamiento(estacionamiento);
 		  return vehiculo2;
 	   }
 

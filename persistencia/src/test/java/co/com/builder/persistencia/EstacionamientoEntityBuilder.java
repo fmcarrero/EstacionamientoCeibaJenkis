@@ -2,6 +2,9 @@ package co.com.builder.persistencia;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import org.mockito.Mockito;
 
 import co.com.persistencia.entity.EstacionamientoEntity;
 import co.com.persistencia.entity.VehiculoEntity;
@@ -34,6 +37,13 @@ public class EstacionamientoEntityBuilder {
 		 EstacionamientoEntity entity = new EstacionamientoEntity(this.placa,this.fechaHoraInicio,this.observacion);
 		 entity.setVehiculo(this.vehiculo);
 		 return entity;
+	 }
+	 public Iterable<EstacionamientoEntity> buildIterable(int size){
+		 ArrayList<EstacionamientoEntity> iterable = new ArrayList<EstacionamientoEntity>();
+		 for(int i=0;i<size;i++){
+			 iterable.add(this.withVehiculoEntity(new VehiculoEntityBuilder().withPlaca(this.placa).buildCarro()).build());
+		 }		 
+		 return iterable;
 	 }
 	 
 }

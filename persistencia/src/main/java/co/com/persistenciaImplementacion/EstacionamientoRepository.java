@@ -28,11 +28,11 @@ public class EstacionamientoRepository  implements IEstacionamientoRepository {
 	
 		
 	@Override
-	public void guardar(Estacionamiento vehiculo)  {		
-		if(this.crudEstacionamientoRepository.exists(vehiculo.getPlaca())){
+	public void guardar(Estacionamiento estacionamiento)  {		
+		if(this.crudEstacionamientoRepository.exists(estacionamiento.getPlaca())){
 			throw new DataIntegrityViolationException("Vehiculo ya se encuentra en el estacionamiento");
 		}
-		EstacionamientoEntity estacionamientoEntity = new EstacionamientoEntity(vehiculo.getPlaca(),vehiculo.getFechaHoraInicio(),vehiculo.getObservacion());
+		EstacionamientoEntity estacionamientoEntity = new EstacionamientoEntity(estacionamiento.getPlaca(),estacionamiento.getFechaHoraInicio(),estacionamiento.getObservacion());
 		this.crudEstacionamientoRepository.save(estacionamientoEntity);		
 	}
 	
@@ -42,7 +42,7 @@ public class EstacionamientoRepository  implements IEstacionamientoRepository {
 		List<Estacionamiento> listaEstacionamiento = new ArrayList<>();
 		for( EstacionamientoEntity e : lista){
 			Estacionamiento estacionamiento = new Estacionamiento(e.getPlaca(),e.getFechaHoraInicio(),e.getObservacion());
-			estacionamiento.setVehiculo(this.vehiculoFactory.getVehiculo(e.getVehiculo()));
+			estacionamiento.setVehiculo(this.vehiculoFactory.getVehiculoWithOUTEstacionamiento(e.getVehiculo()));
 			listaEstacionamiento.add(estacionamiento);
 		}		
 		return listaEstacionamiento;	

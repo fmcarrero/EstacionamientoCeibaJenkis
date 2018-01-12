@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-01-11T22:15:04" hostname="DESKTOP-BD43J8F" time="0.029">
+<testsuite name="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-01-12T13:31:46" hostname="DESKTOP-BD43J8F" time="0.026">
   <properties/>
-  <testcase name="getFailTest" classname="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" time="0.021"/>
-  <testcase name="findByPlacaWithEstacionamientoFailTest" classname="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" time="0.003"/>
+  <testcase name="getFailTest" classname="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" time="0.016"/>
+  <testcase name="findByPlacaWithEstacionamientoFailTest" classname="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" time="0.002"/>
   <testcase name="findByPlacaWithEstacionamientoTest" classname="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" time="0.002"/>
   <testcase name="getOkTest" classname="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" time="0.001"/>
   <testcase name="guardarTest" classname="co.com.persistenciaimplementaciontest.VehiculoRepositoryTest" time="0.002"/>
