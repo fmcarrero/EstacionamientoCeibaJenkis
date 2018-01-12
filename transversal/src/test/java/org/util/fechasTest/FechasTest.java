@@ -12,7 +12,7 @@ public class FechasTest {
 	public void getDiaActual() {
 		//arrange		
 		//act
-		DayOfWeek day= Fechas.getDiaActual();
+		DayOfWeek day= new  Fechas().getDiaActual();
 		//assert
 		assertNotNull(day);
 	}

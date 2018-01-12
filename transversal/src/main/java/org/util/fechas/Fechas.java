@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Fechas {
 	
-	private Fechas(){}
+	public Fechas(){}
 	
 	public static DayOfWeek getDiaActual(){
 		LocalDate localDate = LocalDate.now();

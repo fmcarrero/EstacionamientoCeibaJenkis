@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
-
 import co.com.domain.Cotizacion;
 import co.com.domain.Estacionamiento;
 import co.com.domain.Factura;
@@ -25,7 +23,7 @@ import co.com.domain.Vigilante;
 @CrossOrigin(origins = &quot;*&quot;)
 @RestController
 @RequestMapping(&quot;/api&quot;)
-<span class="fc" id="L28">public class ParqueaderoController {</span>
+<span class="fc" id="L26">public class ParqueaderoController {</span>
 	
 	@Autowired
 	private Vigilante vigilante;
@@ -33,35 +31,35 @@ import co.com.domain.Vigilante;
 	
 	@RequestMapping(value=&quot;/Vehiculo/&quot;,method = RequestMethod.POST)
     public ResponseEntity&lt;String&gt;  createVehiculo(@RequestBody Vehiculo vehiculo) throws Exception {		
-<span class="fc" id="L36">		this.vigilante.registrarVehiculo(vehiculo);		</span>
-<span class="fc" id="L37">		return new ResponseEntity&lt;&gt;(&quot;Vehiculo Creado&quot;,HttpStatus.CREATED);</span>
+<span class="fc" id="L34">		this.vigilante.registrarVehiculo(vehiculo);		</span>
+<span class="fc" id="L35">		return new ResponseEntity&lt;&gt;(&quot;Vehiculo Creado&quot;,HttpStatus.CREATED);</span>
     }
 	
 	 @RequestMapping(value = &quot;/Vehiculo/&quot;, method = RequestMethod.GET)
 	    public ResponseEntity&lt;List&lt;Estacionamiento&gt;&gt; listAllVehiculos() throws VehiculoException {
-<span class="fc" id="L42">		   	List&lt;Estacionamiento&gt; estacionamientos = this.vigilante.findAllVehiculos();</span>
-<span class="fc bfc" id="L43" title="All 2 branches covered.">	        if (estacionamientos.isEmpty()) {</span>
-<span class="fc" id="L44">	            return new ResponseEntity(HttpStatus.NO_CONTENT);</span>
+<span class="fc" id="L40">		   	List&lt;Estacionamiento&gt; estacionamientos = this.vigilante.findAllVehiculos();</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">	        if (estacionamientos.isEmpty()) {</span>
+<span class="fc" id="L42">	            return new ResponseEntity(HttpStatus.NO_CONTENT);</span>
 	            // You many decide to return HttpStatus.NOT_FOUND
 	        }	        
-<span class="fc" id="L47">	        return new ResponseEntity&lt;&gt; (estacionamientos, HttpStatus.OK);</span>
+<span class="fc" id="L45">	        return new ResponseEntity&lt;&gt; (estacionamientos, HttpStatus.OK);</span>
 	 }
 	 
 	 @RequestMapping(value=&quot;/SalidaVehiculo/&quot;,method = RequestMethod.POST)
 	    public ResponseEntity&lt;Factura&gt;  salidaVehiculo(@RequestBody SalidaVehiculoDto vehiculo) throws Exception{
-<span class="fc" id="L52">			Factura factura= this.vigilante.salidaVehiculo(vehiculo);</span>
-<span class="fc" id="L53">			return new ResponseEntity&lt;&gt;(factura, HttpStatus.CREATED);</span>
+<span class="fc" id="L50">			Factura factura= this.vigilante.salidaVehiculo(vehiculo);</span>
+<span class="fc" id="L51">			return new ResponseEntity&lt;&gt;(factura, HttpStatus.CREATED);</span>
 	    }
 	 
 	 @RequestMapping(value = &quot;/Estacionamiento/{id}&quot;, method = RequestMethod.GET)
 	    public ResponseEntity&lt;Cotizacion&gt; getCotizacionEstacionamiento(@PathVariable(&quot;id&quot;) String id) throws VehiculoException {	
-<span class="fc" id="L58">	        Cotizacion cotizacion = this.vigilante.estimarValorPagar(id);	        </span>
-<span class="fc" id="L59">	        return new ResponseEntity&lt;&gt;( cotizacion, HttpStatus.OK)  ;</span>
+<span class="fc" id="L56">	        Cotizacion cotizacion = this.vigilante.estimarValorPagar(id);	        </span>
+<span class="fc" id="L57">	        return new ResponseEntity&lt;&gt;( cotizacion, HttpStatus.OK)  ;</span>
 	 }
 	 @RequestMapping(value = &quot;/Vehiculo/{id}&quot;, method = RequestMethod.GET)
 	    public ResponseEntity&lt;Vehiculo&gt; getVehiculo(@PathVariable(&quot;id&quot;) String id) throws VehiculoException {	
-<span class="fc" id="L63">	        Vehiculo vehiculo = this.vigilante.finVehiculoByPlaca(id);	        </span>
-<span class="fc" id="L64">	        return new ResponseEntity&lt;&gt;( vehiculo, HttpStatus.OK)  ;</span>
+<span class="fc" id="L61">	        Vehiculo vehiculo = this.vigilante.finVehiculoByPlaca(id);	        </span>
+<span class="fc" id="L62">	        return new ResponseEntity&lt;&gt;( vehiculo, HttpStatus.OK)  ;</span>
 	 }
 	
 }

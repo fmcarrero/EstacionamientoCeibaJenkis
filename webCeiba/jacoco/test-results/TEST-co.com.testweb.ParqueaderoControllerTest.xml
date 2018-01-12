@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="co.com.testweb.ParqueaderoControllerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-01-12T14:40:17" hostname="DESKTOP-BD43J8F" time="0.396">
+<testsuite name="co.com.testweb.ParqueaderoControllerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-01-12T18:41:05" hostname="DESKTOP-BD43J8F" time="0.349">
   <properties/>
-  <testcase name="getVehiculoTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.375"/>
-  <testcase name="listAllVehiculosFailTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.006"/>
+  <testcase name="getVehiculoTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.329"/>
+  <testcase name="listAllVehiculosFailTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.004"/>
   <testcase name="createVehiculoTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.005"/>
-  <testcase name="salidaVehiculoTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.004"/>
+  <testcase name="salidaVehiculoTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.005"/>
   <testcase name="listAllVehiculosTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.002"/>
   <testcase name="getCotizacionEstacionamientoTest" classname="co.com.testweb.ParqueaderoControllerTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>

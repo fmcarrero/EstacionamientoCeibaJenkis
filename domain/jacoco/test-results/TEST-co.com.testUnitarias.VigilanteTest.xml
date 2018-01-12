@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="co.com.testUnitarias.VigilanteTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2018-01-12T14:13:08" hostname="DESKTOP-BD43J8F" time="0.455">
+<testsuite name="co.com.testUnitarias.VigilanteTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2018-01-12T18:40:54" hostname="DESKTOP-BD43J8F" time="0.452">
   <properties/>
-  <testcase name="ValidarPlacaFailTest" classname="co.com.testUnitarias.VigilanteTest" time="0.321"/>
-  <testcase name="RegistrarVehiculoTest" classname="co.com.testUnitarias.VigilanteTest" time="0.04"/>
-  <testcase name="crearFacturaOkTest" classname="co.com.testUnitarias.VigilanteTest" time="0.003"/>
+  <testcase name="ValidarPlacaFailTest" classname="co.com.testUnitarias.VigilanteTest" time="0.318"/>
+  <testcase name="RegistrarVehiculoTest" classname="co.com.testUnitarias.VigilanteTest" time="0.044"/>
+  <testcase name="crearFacturaOkTest" classname="co.com.testUnitarias.VigilanteTest" time="0.004"/>
   <testcase name="getValorAPagarTest" classname="co.com.testUnitarias.VigilanteTest" time="0.002"/>
-  <testcase name="ValidarDisponibilidadFail" classname="co.com.testUnitarias.VigilanteTest" time="0.065"/>
-  <testcase name="salidaVehiculoOkTest" classname="co.com.testUnitarias.VigilanteTest" time="0.003"/>
+  <testcase name="ValidarDisponibilidadFail" classname="co.com.testUnitarias.VigilanteTest" time="0.058"/>
+  <testcase name="salidaVehiculoOkTest" classname="co.com.testUnitarias.VigilanteTest" time="0.004"/>
   <testcase name="salidaVehiculoFailTest" classname="co.com.testUnitarias.VigilanteTest" time="0.001"/>
-  <testcase name="ValidarDisponibilidad" classname="co.com.testUnitarias.VigilanteTest" time="0.011"/>
+  <testcase name="ValidarDisponibilidad" classname="co.com.testUnitarias.VigilanteTest" time="0.013"/>
   <testcase name="salidaVehiculoFailFechaSalidaMenorTest" classname="co.com.testUnitarias.VigilanteTest" time="0.001"/>
-  <testcase name="ValidarPlacaOKTest" classname="co.com.testUnitarias.VigilanteTest" time="0.002"/>
+  <testcase name="ValidarPlacaOKTest" classname="co.com.testUnitarias.VigilanteTest" time="0.001"/>
   <testcase name="findAllVehiculosOkTest" classname="co.com.testUnitarias.VigilanteTest" time="0.001"/>
   <testcase name="finVehiculoByPlacaOkTest" classname="co.com.testUnitarias.VigilanteTest" time="0.001"/>
   <system-out><![CDATA[8000.0

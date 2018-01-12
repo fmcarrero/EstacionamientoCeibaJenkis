@@ -15,6 +15,7 @@ import co.com.persistencia.entity.VehiculoEntity;
 
 @Service
 public class VehiculoFactory implements IVehiculoFactory{
+		private static final String VEHICULONOPERMITIDO="Vehiculo no permitido";
 	
 	   public Vehiculo getVehiculo(VehiculoEntity vehiculo) throws VehiculoException{
 		  String classObject = vehiculo.getClass().getSimpleName().toUpperCase().replaceAll("ENTITY", "");
@@ -28,7 +29,7 @@ public class VehiculoFactory implements IVehiculoFactory{
 	    	  vehiculo2= new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());
 	    	  	         	         
 	      }else{    
-	    	  throw new VehiculoException("Vehiculo no permitido");
+	    	  throw new VehiculoException(VEHICULONOPERMITIDO);
 	      }
 		  vehiculo2.setEstacionamiento(estacionamiento);
 		  return vehiculo2;
@@ -45,7 +46,7 @@ public class VehiculoFactory implements IVehiculoFactory{
 	         return new MotoEntity(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());
 	         
 	      }	      
-	      throw new VehiculoException("Vehiculo no permitido");
+	      throw new VehiculoException(VEHICULONOPERMITIDO);
 	}
 
 	@Override
@@ -57,6 +58,7 @@ public class VehiculoFactory implements IVehiculoFactory{
 	      } else if(classObject.equals(TipoVehiculoEnum.MOTO.toString())){
 	    	  return new Moto(vehiculo.getPlaca(),vehiculo.getColor(),vehiculo.getCilindraje());	    		         
 	      }	      
-	      throw new VehiculoException("Vehiculo no permitido");
+	      throw new VehiculoException(VEHICULONOPERMITIDO);
 	}
+	
 }

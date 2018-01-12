@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="co.com.persistenciaimplementaciontest.FacturaRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-01-12T14:13:12" hostname="DESKTOP-BD43J8F" time="0.017">
+<testsuite name="co.com.persistenciaimplementaciontest.FacturaRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-01-12T18:40:57" hostname="DESKTOP-BD43J8F" time="0.015">
   <properties/>
-  <testcase name="guardarOkTest" classname="co.com.persistenciaimplementaciontest.FacturaRepositoryTest" time="0.017"/>
+  <testcase name="guardarOkTest" classname="co.com.persistenciaimplementaciontest.FacturaRepositoryTest" time="0.015"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
